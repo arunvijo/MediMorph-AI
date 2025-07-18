@@ -1,10 +1,13 @@
 import requests
 
-def simplify_instruction_with_openrouter(text, openrouter_api_key):
+# Hardcoded API key for local testing (DO NOT SHARE PUBLICLY)
+OPENROUTER_API_KEY = "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"
+
+def simplify_instruction_with_openrouter(text, openrouter_api_key=None):
     headers = {
-        "Authorization": f"Bearer {openrouter_api_key}",
+        "Authorization": f"Bearer {openrouter_api_key or OPENROUTER_API_KEY}",
         "Content-Type": "application/json",
-        "HTTP-Referer": "https://yourdomain.com",
+        "HTTP-Referer": "https://yourdomain.com",  # Required field for OpenRouter
         "X-Title": "MediMorph-AI"
     }
     data = {
