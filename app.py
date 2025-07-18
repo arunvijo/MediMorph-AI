@@ -18,15 +18,24 @@ language = st.selectbox("🌐 Translate to", options=["None", "Malayalam", "Hind
 lang_codes = {"None": None, "Malayalam": "ml", "Hindi": "hi", "Tamil": "ta", "Telugu": "te"}
 
 input_text = ""
+
+# ------------------- OCR DEMO MODE -------------------
 if image_file:
     st.image(image_file, caption="📄 Uploaded Image", use_column_width=True)
     with st.spinner("🔍 Extracting text..."):
-        extracted_text = extract_text_ocr_space(image_file)  # Can switch to PaddleOCR
+        extracted_text = extract_text_paddleocr("mock_image_path.jpg")  # Simulated result
         st.text_area("📝 Extracted Text", value=extracted_text, height=150)
         input_text = extracted_text
+elif st.button("🔍 Run OCR Demo without Image"):
+    with st.spinner("🧪 Running demo OCR..."):
+        extracted_text = extract_text_paddleocr("mock_image_path.jpg")
+        st.text_area("📝 Demo Extracted Text", value=extracted_text, height=150, key="demo_ocr_text")
+        input_text = extracted_text
 
-manual_text = st.text_area("✍️ Or enter instruction manually", value=input_text or "", height=120)
+# ------------------- Manual Input -------------------
+manual_text = st.text_area("✍️ Or enter medical instruction manually", value=input_text or "", height=120)
 
+# ------------------- Simplification, Translation, TTS -------------------
 if st.button("🔄 Simplify Instruction"):
     if not openrouter_key.strip():
         st.warning("Enter your OpenRouter API key.")

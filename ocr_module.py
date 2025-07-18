@@ -15,7 +15,11 @@ def extract_text_ocr_space(image_file, api_key="helloworld"):
     except:
         return "⚠️ OCR failed or unreadable image."
 
-# PaddleOCR integration (mock version, your friend will update this)
+# PaddleOCR integration (mock version, temporary)
 def extract_text_paddleocr(image_path):
-    # Replace this with actual PaddleOCR code
-    return "Mocked output from PaddleOCR"
+    # Simulated extracted text from a prescription image
+    return """
+Take one tablet of Paracetamol 500mg after food in the morning.
+Take one capsule of Omeprazole 20mg before breakfast daily.
+Apply ointment twice daily on affected area.
+"""  # You can change this for other tests
